@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'otel-collector'
+    # metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ['otel-collector:8889']
+#Scrape the JMX Exporter
+  - job_name: 'jmx-exporter-node1'
+    static_configs:
+      - targets: ['ignite-master:9511']  # Replace with the actual host and port
+  
+  - job_name: 'jmx-exporter-node2'
+    static_configs:
+      - targets: ['ignite-node2:9512']  # Replace with the actual host and port
